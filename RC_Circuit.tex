@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+\usepackage[pagebackref,letterpaper=true,colorlinks=true,pdfpagemode=none,urlcolor=blue,linkcolor=blue,citecolor=blue,pdfstartview=FitH]{hyperref}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+\usepackage{color}
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.0in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{5px}
+
+\input{macrosblog}
+
+\begin{document} 
+
+What happens to $V_{out}$ if, priot to t=0, the circuit is in a steady-state with $V_{m} = V_{1}$ and at t=0, $V_{m}$ switches to $V_{2}$?
+
+\begin{equation} \label{eq:1} 
+i_{m} = i_{c} + i_{r} 
+\end{equation}
+
+\begin{equation} \label{eq:2} 
+i_{c} = C\frac{dV_{out}}{dt}
+\end{equation}
+
+\begin{equation} \label{eq:3} 
+i_{r} = \frac{V_{out}}{R_{o}}
+\end{equation}
+
+Combining (\ref{eq:1}), (\ref{eq:2}), and (\ref{eq:3}),
+
+\begin{equation} \label{eq:4} 
+i_{m} = C\frac{dV_{out}}{dt} + \frac{V_{out}}{R_{o}}
+\end{equation}
+
+We also know that
+
+\begin{equation} \label{eq:5} 
+i_{m} = \frac{V_{m}-V_{out}}{R_{m}} 
+\end{equation}
+
+Combinging (\ref{eq:4}) and (\ref{eq:5}),
+
+\begin{eqnarray*} \label{eq:6} 
+0 = C\frac{dV_{out}}{dt} + \frac{V_{out}}{R_{o}} + \frac{V_{out}  - V_{m}}{R_{m}}\\
+C\frac{dV_{out}}{dt} + \frac{V_{o}(R_{m} + R_{o})}{R_{o}R_{m}} - \frac{V_{m}}{R_{m}}
+\end{eqnarray*}
+
+This is of the form
+
+\begin{equation} \label{eq:7}
+0 = a_{1}\frac{dx}{dt} + a_{2}x + a_{3}
+\end{equation}
+
+which has a general solution of
+
+\begin{equation} \label{eq:8}
+x = \frac{-a_{3}}{a_{2}} + be^{-\frac{a_{2}}{a_{1}}t}
+\end{equation}
+
+where b is a constant.
+
+So, 
+
+\begin{equation} \label{eq:9}
+V_{out} = \frac{V_{m}R_{o}}{R_{o}+R_{m}} + be^{-\frac{R_{o}R_{m}C}{R_{o} + R_{m}}t}
+\end{equation}
+
+Now, solve for initial conditions. Since the circuit was in steady state,
+
+\begin{equation} \label{eq:10}
+V_{out}(0) = \frac{V_{1}R_{o}}{R_{o}+R_{m}}
+\end{equation}
+
+Setting (\ref{eq:10}) equal to (\ref{eq:9}), setting t = 0, and solving for b yields
+
+\begin{equation} \label{eq:11}
+b = -\frac{(V_{1} - V_{0})R_{o}}{R_{o} + R_{m}}
+\end{equation}
+
+(Remember, anything raised to the power of 0 equals 1.)
+
+So, the solution is
+
+\begin{equation} \label{eq:12}
+V_{out} = \frac{V_{2}R_{o}}{R_{o}+R_{m}} - \frac{V_{2} - V_{1}}{R_{o}}{R_{o} + R_{m}}e^{-\frac{R_{o}R_{m}C}{R_{o} + R_{m}}t}
+\end{equation}
+
+This represents an exponential curve from $V_{1}$ to $V_{2}$, as shown in the following figure.
+
+Now, what if $V_{m}$ switched back to $V_{1}$ before the circuit reached steady state? $V_{o}$ would curve back to $V_{1}$ according to the following equation, where $V_{i}$ is whatever voltage value $V_{o}$ had when the switch was made.
+
+\begin{equation} \label{eq:13}
+V_{out} = \frac{V_{1}R_{o}}{R_{o}+R_{m}} - \frac{(V_{1} - V_{i})R_{o}}{R_{o} + R_{m}}e^{-\frac{R_{o}R_{m}C}{R_{o} + R_{m}}t}
+\end{equation}
+
+Here's a simulation illustrating this, with $\tau$ indicating the time that $V_{2}$ is applied. As $\tau$ gets smaller and smaller, the less $V_{2}$ gets transfered to the output $V_{o}$. This makes the circuit a low-pass filter, as in it passes low frequencies (like DC) and filters out high frequencies (like voltage spikes).
+
+\end{document}
