@@ -24,7 +24,7 @@ V2 = 10;
 Vinit = V1;
 VmArray = V1*ones(1,10000);
 VmArray(2000:end) = V2;
-[timeArray, VoArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
+[timeArray, VoutArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
 
 plotRC_CircuitScript;
 
@@ -32,7 +32,7 @@ plotRC_CircuitScript;
 Vinit = V1;
 VmArray = V1*ones(1,10000);
 VmArray(2000:3000) = V2;
-[timeArray, VoArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
+[timeArray, VoutArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
 
 plotRC_CircuitScript;
 
@@ -40,7 +40,7 @@ plotRC_CircuitScript;
 Vinit = V1;
 VmArray = V1*ones(1,10000);
 VmArray(2000:2200) = V2;
-[timeArray, VoArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
+[timeArray, VoutArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
 
 plotRC_CircuitScript;
 
@@ -48,7 +48,7 @@ plotRC_CircuitScript;
 Vinit = V1;
 VmArray = V1*ones(1,10000);
 VmArray(2000:2050) = V2;
-[timeArray, VoArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
+[timeArray, VoutArray] =  RC_CircuitSim(Rm, Ro, C, VmArray, Vinit);
 
 plotRC_CircuitScript;
 
